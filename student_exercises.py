@@ -80,7 +80,7 @@ class StudentExercises:
         print("4. Identify the optimal value")
         
         # SOLUTION TEMPLATE (uncomment and complete):
-        """
+
         n_estimators_values = [10, 50, 100, 200, 500]
         r2_scores = []
         
@@ -111,7 +111,7 @@ class StudentExercises:
         best_r2 = r2_scores[best_idx]
         
         print(f"\nOptimal n_estimators: {best_n_estimators} (R² = {best_r2:.3f})")
-        """
+
         
     def exercise_3_feature_engineering(self):
         """
@@ -136,7 +136,7 @@ class StudentExercises:
         print("4. Train models and compare R² scores")
         
         # SOLUTION TEMPLATE (uncomment and complete):
-        """
+
         # Create new features
         data_enhanced = self.predictor.data.copy()
         
@@ -180,7 +180,7 @@ class StudentExercises:
         plt.title('Feature Importance (Enhanced Dataset)')
         plt.tight_layout()
         plt.show()
-        """
+
         
     def exercise_4_cross_validation(self):
         """
@@ -204,7 +204,7 @@ class StudentExercises:
         print("4. Determine which model is more reliable")
         
         # SOLUTION TEMPLATE (uncomment and complete):
-        """
+
         from sklearn.model_selection import cross_val_score
         
         # Prepare data
@@ -237,7 +237,7 @@ class StudentExercises:
             print(f"  R² scores: {scores}")
             print(f"  Mean: {mean_score:.3f} ± {std_score:.3f}")
             print()
-        """
+
         
     def exercise_5_new_algorithm(self):
         """
@@ -261,7 +261,7 @@ class StudentExercises:
         print("4. Discuss when you might choose each algorithm")
         
         # SOLUTION TEMPLATE (uncomment and complete):
-        """
+
         from sklearn.svm import SVR
         
         # Prepare scaled data (SVR needs feature scaling)
@@ -315,7 +315,7 @@ class StudentExercises:
         print("- Linear Regression: Fast, interpretable, assumes linear relationships")
         print("- Random Forest: Handles non-linear patterns, robust, less interpretable")
         print("- SVR: Good for high-dimensional data, can capture complex patterns")
-        """
+
         
     def challenge_exercise_ensemble(self):
         """
@@ -344,7 +344,7 @@ class StudentExercises:
         print("- Weights should sum to 1.0")
         
         # SOLUTION TEMPLATE (uncomment and complete):
-        """
+
         # Train individual models
         scaler = StandardScaler()
         X_train_scaled = scaler.fit_transform(self.predictor.X_train)
@@ -412,7 +412,7 @@ class StudentExercises:
         print(f"Linear Regression: {w_lr:.3f}")
         print(f"Random Forest: {w_rf:.3f}")
         print(f"SVR: {w_svr:.3f}")
-        """
+
 
 def run_all_exercises():
     """
