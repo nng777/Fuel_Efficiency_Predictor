@@ -19,6 +19,8 @@ from sklearn.metrics import mean_squared_error, r2_score
 import matplotlib.pyplot as plt
 from fuel_efficiency_predictor import FuelEfficiencyPredictor
 
+
+# noinspection PyPackageRequirements
 class StudentExercises:
     """
     Interactive exercises for learning machine learning concepts.
@@ -41,6 +43,7 @@ class StudentExercises:
         3. Remove the least important feature and retrain
         4. Compare performance
         """
+
         print("="*60)
         print("EXERCISE 1: FEATURE IMPORTANCE ANALYSIS")
         print("="*60)
@@ -51,12 +54,51 @@ class StudentExercises:
         print("3. Create a bar plot of feature importance")
         print("4. Remove the least important feature and retrain")
         print("5. Compare R² scores before and after")
-        
+
+        """
         print("\n💡 SOLUTION TEMPLATE:")
         print("# Step 1: Train Random Forest")
         print("rf_model = RandomForestRegressor(n_estimators=100, random_state=42)")
         print("rf_model.fit(self.predictor.X_train, self.predictor.y_train)")
         print("# Step 2-5: Complete the implementation!")
+        """
+        #Step1: Train Random Forest
+        rf_model = RandomForestRegressor(n_estimators=100, random_state=42)
+        rf_model.fit(self.predictor.X_train, self.predictor.y_train)
+
+        #Step2: Get feature importances
+        importances = rf_model.feature_importances_
+        feature_names = self.predictor.X_train.columns
+
+        #Step3: Bar plot of feature importances
+        indices = np.argsort(importances)[::-1]
+        plt.figure(figsize=(10, 6))
+        plt.title("Feature Importances")
+        plt.bar(range(len(importances)), importances[indices], align='center')
+        plt.xticks(range(len(importances)), feature_names[indices], rotation=45)
+        plt.tight_layout()
+        plt.show()
+
+        #Step4: Remove least important feature
+        least_important_feature = feature_names[indices][-1]
+        print(f"\n🔍 Least Important Feature: {least_important_feature}")
+
+        X_train_reduced = self.predictor.X_train.drop(columns=[least_important_feature])
+        X_test_reduced = self.predictor.X_test.drop(columns=[least_important_feature])
+
+        #Step5: Retrain and compare
+        rf_model_reduced = RandomForestRegressor(n_estimators=100, random_state=42)
+        rf_model_reduced.fit(X_train_reduced, self.predictor.y_train)
+
+        #Evaluate performance
+        y_pred_original = rf_model.predict(self.predictor.X_test)
+        y_pred_reduced = rf_model_reduced.predict(X_test_reduced)
+
+        r2_original = r2_score(self.predictor.y_test, y_pred_original)
+        r2_reduced = r2_score(self.predictor.y_test, y_pred_reduced)
+
+        print(f"\n📊 Original R² Score: {r2_original:.4f}")
+        print(f"📉 Reduced R² Score (after removing '{least_important_feature}'): {r2_reduced:.4f}")
         
     def exercise_2_hyperparameter_tuning(self):
         """
